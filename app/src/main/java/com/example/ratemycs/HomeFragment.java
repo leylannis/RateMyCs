@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,6 +36,7 @@ public class HomeFragment extends Fragment {
     private CourseAdapter adapter;
     private ArrayList<Course> courseElems;
     private List<String> mDataKey = new ArrayList<>();
+    SearchView searchview;
 
 
     public HomeFragment() {
@@ -59,6 +61,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+
     }
 
     @Override
@@ -66,6 +69,21 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
         init();
+
+        searchview = Objects.requireNonNull(getView()).findViewById(R.id.searchView);
+        searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filterList(newText);
+                return true;
+            }
+        });
+
     }
 
     private void init() {
@@ -75,7 +93,6 @@ public class HomeFragment extends Fragment {
         loadcourses();
         adapter = new CourseAdapter(getContext(), courseElems);
         recyclerView.setAdapter(adapter);
-        //adapter.setList(courseElems);
     }
 
     private void loadcourses() {

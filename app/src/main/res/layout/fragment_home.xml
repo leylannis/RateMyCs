@@ -10,13 +10,15 @@
     <SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-    </SearchView>
+        android:layout_height="50dp"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search for a class..." />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/courseListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:padding="8dp"/>
+
 </LinearLayout>

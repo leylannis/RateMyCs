@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.bringToFront();
 
         navigationView.setNavigationItemSelectedListener(this);
-        //loadFragment(new HomeFragment());
+        loadFragment(new HomeFragment());
         //navigationView.setCheckedItem(R.id.nav_home);
 
     }
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 break;
             case R.id.nav_profile:
+                fragment = new ProfileFragment();
+                loadFragment(fragment);
                 break;
             case R.id.nav_rate:
                 break;

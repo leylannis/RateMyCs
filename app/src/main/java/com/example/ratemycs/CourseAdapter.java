@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,10 +14,12 @@ import java.util.ArrayList;
 public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     private Context context;
     private ArrayList<Course> coursesArray;
+    MyFilter filter;
 
     public CourseAdapter(Context context, ArrayList<Course> coursesArray) {
         this.context = context;
         this.coursesArray = coursesArray;
+        filter = new MyFilter(coursesArray, this);
     }
 
     @NonNull
@@ -36,4 +39,14 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
     public int getItemCount() {
         return coursesArray.size();
     }
+
+    public void setList(ArrayList<Course> newList){
+        this.coursesArray = newList;
+        notifyDataSetChanged();
+    }
+
+    public void filterList(String text) {
+        filter.filter(text);
+    }
+
 }
