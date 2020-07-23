@@ -66,20 +66,20 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         this.v = view;
         init();
-        loadcourses();
     }
 
     private void init() {
         recyclerView = (RecyclerView) Objects.requireNonNull(getView()).findViewById(R.id.courseListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courseElems = new ArrayList<>();
+        loadcourses();
         adapter = new CourseAdapter(getContext(), courseElems);
         recyclerView.setAdapter(adapter);
+        //adapter.setList(courseElems);
     }
 
     private void loadcourses() {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("courses");
-        //Query ref = db.child(name);
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
                     courseElems.add(single.getValue(Course.class));
                     mDataKey.add(single.getKey());
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
