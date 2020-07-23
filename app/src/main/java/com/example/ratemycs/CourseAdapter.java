@@ -4,17 +4,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Filter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
+public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> implements View.OnClickListener {
     private Context context;
     private ArrayList<Course> coursesArray;
     MyFilter filter;
+    AdapterView.OnItemClickListener listener;
 
     public CourseAdapter(Context context, ArrayList<Course> coursesArray) {
         this.context = context;
@@ -49,4 +56,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> {
         filter.filter(text);
     }
 
+    @Override
+    public void onClick(View v) {
+        // nyi
+    }
 }

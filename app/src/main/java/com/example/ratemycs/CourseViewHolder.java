@@ -1,13 +1,12 @@
 package com.example.ratemycs;
 
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CourseViewHolder extends RecyclerView.ViewHolder {
+public class CourseViewHolder extends RecyclerView.ViewHolder{
 
     private TextView courseCode, courseName, courseSchool;
 

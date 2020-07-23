@@ -5,8 +5,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import android.widget.AdapterView;
 import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +65,6 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
-
     }
 
     @Override
@@ -80,8 +83,11 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.filterList(newText);
+                //loadcourses();
                 return true;
             }
+
+
         });
 
     }
@@ -90,12 +96,23 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) Objects.requireNonNull(getView()).findViewById(R.id.courseListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courseElems = new ArrayList<>();
-        loadcourses();
+        LoadCourses();
         adapter = new CourseAdapter(getContext(), courseElems);
         recyclerView.setAdapter(adapter);
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment2 = new CourseDetailsFragment();
+                FragmentManager fragmentManager= Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.frame_container,fragment2,"tag");
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
     }
 
-    private void loadcourses() {
+    private void LoadCourses() {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("courses");
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -114,5 +131,14 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void LoadDetailsFragment(){
+        Fragment fragment2 = new CourseDetailsFragment();
+        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_container,fragment2,"tag");
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

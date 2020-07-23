@@ -41,6 +41,4 @@ public class Course {
     public void setSchool(String school) {
         this.school = school;
     }
-
-
 }
