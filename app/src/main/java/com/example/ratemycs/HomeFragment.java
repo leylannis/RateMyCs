@@ -38,9 +38,14 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     View v;
     private CourseAdapter adapter;
-    private ArrayList<Course> courseElems;
+    private static ArrayList<Course> courseElems;
     private List<String> mDataKey = new ArrayList<>();
     SearchView searchview;
+    static Course selectedCourse;
+
+    public static Course getItem(int position) {
+        return courseElems.get(position);
+    }
 
 
     public HomeFragment() {
@@ -97,17 +102,12 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courseElems = new ArrayList<>();
         LoadCourses();
-        adapter = new CourseAdapter(getContext(), courseElems);
+        adapter = new CourseAdapter(getActivity(), courseElems);
         recyclerView.setAdapter(adapter);
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment2 = new CourseDetailsFragment();
-                FragmentManager fragmentManager= Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frame_container,fragment2,"tag");
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                LoadDetailsFragment(selectedCourse);
             }
         });
     }
@@ -133,7 +133,8 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void LoadDetailsFragment(){
+     void LoadDetailsFragment(Course option){
+        //option.
         Fragment fragment2 = new CourseDetailsFragment();
         FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

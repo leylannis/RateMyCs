@@ -9,6 +9,7 @@ import android.widget.Filter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,14 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
-public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> implements View.OnClickListener {
-    private Context context;
+public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>  {
+    private Context mContext;
     private ArrayList<Course> coursesArray;
     MyFilter filter;
     AdapterView.OnItemClickListener listener;
 
     public CourseAdapter(Context context, ArrayList<Course> coursesArray) {
-        this.context = context;
+        this.mContext = context;
         this.coursesArray = coursesArray;
         filter = new MyFilter(coursesArray, this);
     }
@@ -32,14 +33,26 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> implem
     @NonNull
     @Override
     public CourseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_course, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_course, parent, false);
         return new CourseViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
-        Course course = coursesArray.get(position);
+    public void onBindViewHolder(@NonNull CourseViewHolder holder, final int position) {
+        final Course course = coursesArray.get(position);
         holder.setData(course);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Course selectedCourse = new Course(course.getCode(), course.getName(), course.getSchool());
+                HomeFragment.selectedCourse = selectedCourse;
+                Fragment fragment = new CourseDetailsFragment();
+                FragmentTransaction transaction = ((MainActivity)mContext).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_container, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 
     @Override
@@ -54,10 +67,5 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder> implem
 
     public void filterList(String text) {
         filter.filter(text);
-    }
-
-    @Override
-    public void onClick(View v) {
-        // nyi
     }
 }
