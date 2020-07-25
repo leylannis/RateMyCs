@@ -1,11 +1,9 @@
 package com.example.ratemycs;
 
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CourseViewHolder extends RecyclerView.ViewHolder{
@@ -20,10 +18,6 @@ public class CourseViewHolder extends RecyclerView.ViewHolder{
         courseName = (TextView)itemView.findViewById(R.id.name_TextView);
         courseSchool = (TextView)itemView.findViewById(R.id.school_TextView);
     }
-
-//    private Course getItem(int position) {
-  //     return HomeFragment.getItem(position);
-    //}
 
     public void setData(Course course) {
         courseCode.setText(course.getCode());

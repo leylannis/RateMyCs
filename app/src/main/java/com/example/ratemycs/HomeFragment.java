@@ -43,10 +43,6 @@ public class HomeFragment extends Fragment {
     SearchView searchview;
     static Course selectedCourse;
 
-    public static Course getItem(int position) {
-        return courseElems.get(position);
-    }
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -104,12 +100,6 @@ public class HomeFragment extends Fragment {
         LoadCourses();
         adapter = new CourseAdapter(getActivity(), courseElems);
         recyclerView.setAdapter(adapter);
-        recyclerView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoadDetailsFragment(selectedCourse);
-            }
-        });
     }
 
     private void LoadCourses() {
@@ -131,15 +121,5 @@ public class HomeFragment extends Fragment {
 
             }
         });
-    }
-
-     void LoadDetailsFragment(Course option){
-        //option.
-        Fragment fragment2 = new CourseDetailsFragment();
-        FragmentManager fragmentManager=getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_container,fragment2,"tag");
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
     }
 }
