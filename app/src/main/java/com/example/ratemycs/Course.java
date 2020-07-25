@@ -1,6 +1,8 @@
 package com.example.ratemycs;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
 
     public Course(String code, String name, String school) {
         this.code = code;

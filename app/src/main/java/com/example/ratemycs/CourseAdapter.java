@@ -1,6 +1,8 @@
 package com.example.ratemycs;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>  {
@@ -42,6 +45,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>  {
                 Course selectedCourse = new Course(course.getCode(), course.getName(), course.getSchool());
                 HomeFragment.selectedCourse = selectedCourse;
                 Fragment fragment = new CourseDetailsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("course", (Serializable) selectedCourse);
+                fragment.setArguments(bundle);
                 FragmentTransaction transaction = ((MainActivity)mContext).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_container, fragment);
                 transaction.addToBackStack(null);

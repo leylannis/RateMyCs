@@ -84,11 +84,9 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.filterList(newText);
-                //loadcourses();
+                //LoadCourses();
                 return true;
             }
-
-
         });
 
     }
