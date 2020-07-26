@@ -20,8 +20,8 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void setData(Review review) {
-        descView.append(review.getDescription());
-        profView.append("Professor Taken: " + review.getProfessor());
+        descView.setText(review.getDescription());
+        profView.setText("Professor Taken: " + review.getProfessor());
         scoreView.setText("Score: " + review.getScore());
     }
 }

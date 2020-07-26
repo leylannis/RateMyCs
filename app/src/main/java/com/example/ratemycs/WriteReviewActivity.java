@@ -81,6 +81,7 @@ public class WriteReviewActivity extends AppCompatActivity {
         DatabaseReference mRef = database.getReference().child("reviews");
         mRef.push().setValue(new Review(code, description, professor, score));
         Toast.makeText(getApplicationContext(), "Review Submitted Successfully", Toast.LENGTH_SHORT).show();
+        ReviewAdapter.reviewsArray.add(new Review(code, description, professor, score));
         finish();
     }
 }

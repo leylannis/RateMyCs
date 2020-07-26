@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 public class CourseDetailsFragment extends Fragment {
 
@@ -33,7 +34,6 @@ public class CourseDetailsFragment extends Fragment {
     TextView codeView, nameView, schoolView, avgView;
     Button reviewButton, saveButton;
     androidx.recyclerview.widget.RecyclerView recyclerView;
-    View v;
     ReviewAdapter adapter;
 
     private static ArrayList<Review> reviewElems;
@@ -43,7 +43,7 @@ public class CourseDetailsFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static CourseDetailsFragment newInstance(String param1, String param2) {
+    public static CourseDetailsFragment newInstance() {
         return new CourseDetailsFragment();
     }
 
@@ -64,7 +64,6 @@ public class CourseDetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //this.v = view;
         init();
     }
 
@@ -89,7 +88,9 @@ public class CourseDetailsFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WriteReviewActivity.class);
                 intent.putExtra("code", selected.getCode());
+                CourseDetailsFragment.super.onPause();
                 startActivity(intent);
+                CourseDetailsFragment.super.onResume();
             }
         });
 
@@ -97,8 +98,10 @@ public class CourseDetailsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         reviewElems = new ArrayList<>();
         LoadReviews();
+
         adapter = new ReviewAdapter(getActivity(), reviewElems);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private void LoadReviews(){
@@ -112,6 +115,25 @@ public class CourseDetailsFragment extends Fragment {
                     reviewElems.add(single.getValue(Review.class));
                     mDataKey.add(single.getKey());
                 }
+
+                // filter list to include only selected course reviews
+                reviewElems.removeIf(new Predicate<Review>() {
+                    @Override
+                    public boolean test(Review n) {
+                        return (!n.getCode().equals(selected.getCode()));
+                    }
+                });
+
+                int avgSum = 0;
+                int count = 0;
+                // add average rating
+                for(int i = 0; i<reviewElems.size(); i++){
+                    avgSum += Integer.parseInt(reviewElems.get(i).getScore());
+                    count++;
+                }
+                double avg = avgSum/count;
+                avgView.setText(String.valueOf(avg));
+
                 adapter.notifyDataSetChanged();
             }
 
@@ -120,5 +142,12 @@ public class CourseDetailsFragment extends Fragment {
 
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LoadReviews();
+        adapter.notifyDataSetChanged();
     }
 }

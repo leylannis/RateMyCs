@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder>  {
     private Context mContext;
-    private ArrayList<Review> reviewsArray;
+    static ArrayList<Review> reviewsArray;
 
     public ReviewAdapter(Context context, ArrayList<Review> reviewsArray) {
         this.mContext = context;

@@ -8,9 +8,9 @@
     <LinearLayout
         android:id="@+id/detailsLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingVertical="4dp">
+        android:paddingVertical="12dp">
 
         <TextView
             android:id="@+id/title"
@@ -25,22 +25,22 @@
             android:id="@+id/code_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/course_code"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:text="@string/course_code" />
 
         <TextView
             android:id="@+id/name_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/full_name"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:text="@string/full_name" />
 
         <TextView
             android:id="@+id/school_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/school_name"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            android:text="@string/school_name" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,52 +60,47 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/baloo"
                 android:text="@string/none"
-                android:textSize="18sp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/fiveTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/aclonica"
+                android:fontFamily="@font/baloo"
                 android:text="@string/_5"
-                android:textSize="18sp" />
+                android:textSize="19sp" />
 
         </LinearLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/review_Recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/reviewButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/add_review"
-                android:paddingHorizontal="20dp"
-                android:layout_gravity="bottom"/>
+                android:paddingHorizontal="50dp"
+                android:text="@string/add_review" />
 
             <Button
                 android:id="@+id/saveButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:fontFamily="sans-serif-light"
-                android:text="@string/add_to_saved_courses"
-                android:paddingHorizontal="20dp"
-                android:layout_gravity="bottom"/>
+                android:paddingHorizontal="25dp"
+                android:text="@string/add_to_saved_courses" />
+
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/review_Recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
