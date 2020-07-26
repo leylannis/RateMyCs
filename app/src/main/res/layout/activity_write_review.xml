@@ -3,16 +3,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".WriteReviewActivity">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/code_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="127dp"
-        android:layout_marginTop="264dp"
-        android:text="write a review"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/baloo"
+        android:text="@string/default_course_label"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rating_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/overall_rating_label"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_TextView" />
+
+    <EditText
+        android:id="@+id/score_EditText"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/score_hint"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/rating_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/code_TextView" />
+
+    <TextView
+        android:id="@+id/prof_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/professor_taken_label"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rating_TextView" />
+
+    <EditText
+        android:id="@+id/prof_EditText"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="11dp"
+        android:hint="@string/prof_name_hint"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/prof_TextView"
+        app:layout_constraintTop_toBottomOf="@+id/score_EditText" />
+
+    <EditText
+        android:id="@+id/desc_EditText"
+        android:layout_width="343dp"
+        android:layout_height="151dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="15dp"
+        android:hint="@string/review_hint"
+        android:inputType="textCapSentences"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detail_TextView" />
+
+    <Button
+        android:id="@+id/submit_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/submit_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_EditText" />
+
+    <Button
+        android:id="@+id/clear_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/clear_label"
+        app:layout_constraintStart_toEndOf="@+id/submit_Button"
+        app:layout_constraintTop_toBottomOf="@+id/desc_EditText" />
+
+    <TextView
+        android:id="@+id/detail_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/review_description_label"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prof_TextView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
