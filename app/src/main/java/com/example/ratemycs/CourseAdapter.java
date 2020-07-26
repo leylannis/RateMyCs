@@ -2,7 +2,6 @@ package com.example.ratemycs;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>  {
     private Context mContext;
     private ArrayList<Course> coursesArray;
     MyFilter filter;
-    AdapterView.OnItemClickListener listener;
 
     public CourseAdapter(Context context, ArrayList<Course> coursesArray) {
         this.mContext = context;
