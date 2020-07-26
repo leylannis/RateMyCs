@@ -12,7 +12,7 @@
         android:layout_marginTop="70dp"
         android:fontFamily="@font/baloo"
         android:text="@string/default_course_label"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

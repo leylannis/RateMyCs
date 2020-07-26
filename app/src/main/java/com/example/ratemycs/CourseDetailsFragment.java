@@ -88,6 +88,7 @@ public class CourseDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WriteReviewActivity.class);
+                intent.putExtra("code", selected.getCode());
                 startActivity(intent);
             }
         });

@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import static android.graphics.Color.RED;
 
 public class WriteReviewActivity extends AppCompatActivity {
@@ -28,6 +31,9 @@ public class WriteReviewActivity extends AppCompatActivity {
         descriptionView = findViewById(R.id.desc_EditText);
         submit = findViewById(R.id.submit_Button);
         clear = findViewById(R.id.clear_Button);
+
+        String intentData = getIntent().getStringExtra("code");
+        courseCode.setText(intentData);
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +77,10 @@ public class WriteReviewActivity extends AppCompatActivity {
     }
 
     private void addReviewToDatabase(){
-
-
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference mRef = database.getReference().child("reviews");
+        mRef.push().setValue(new Review(code, description, professor, score));
+        Toast.makeText(getApplicationContext(), "Review Submitted Successfully", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }
