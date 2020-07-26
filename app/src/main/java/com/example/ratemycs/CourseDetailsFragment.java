@@ -104,7 +104,7 @@ public class CourseDetailsFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    private void LoadReviews(){
+    private void LoadReviews() {
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("reviews");
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -124,17 +124,18 @@ public class CourseDetailsFragment extends Fragment {
                     }
                 });
 
-                int avgSum = 0;
-                int count = 0;
-                // add average rating
-                for(int i = 0; i<reviewElems.size(); i++){
-                    avgSum += Integer.parseInt(reviewElems.get(i).getScore());
-                    count++;
+                // add average rating score
+                if (reviewElems.size() > 0) {
+                    int avgSum = 0;
+                    int count = 0;
+                    for (int i = 0; i < reviewElems.size(); i++) {
+                        avgSum += Integer.parseInt(reviewElems.get(i).getScore());
+                        count++;
+                    }
+                    double avg = avgSum / count;
+                    avgView.setText(String.valueOf(avg));
+                    adapter.notifyDataSetChanged();
                 }
-                double avg = avgSum/count;
-                avgView.setText(String.valueOf(avg));
-
-                adapter.notifyDataSetChanged();
             }
 
             @Override

@@ -79,19 +79,21 @@
 
             <Button
                 android:id="@+id/reviewButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="sans-serif-medium"
                 android:paddingHorizontal="50dp"
                 android:text="@string/add_review" />
 
             <Button
                 android:id="@+id/saveButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:fontFamily="sans-serif-light"
+                android:fontFamily="sans-serif-medium"
                 android:paddingHorizontal="25dp"
                 android:text="@string/add_to_saved_courses" />
 

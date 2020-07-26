@@ -73,22 +73,26 @@
 
     <Button
         android:id="@+id/submit_Button"
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="86dp"
         android:layout_marginTop="100dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif-medium"
+        android:padding="20dp"
         android:text="@string/submit_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/desc_EditText" />
 
     <Button
         android:id="@+id/clear_Button"
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="49dp"
         android:layout_marginTop="100dp"
-        android:fontFamily="sans-serif-light"
+        android:fontFamily="sans-serif-medium"
+        android:padding="20dp"
         android:text="@string/clear_label"
         app:layout_constraintStart_toEndOf="@+id/submit_Button"
         app:layout_constraintTop_toBottomOf="@+id/desc_EditText" />
