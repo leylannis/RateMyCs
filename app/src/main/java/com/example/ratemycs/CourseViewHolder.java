@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+// view holder for courses, details course data to be displayed
 public class CourseViewHolder extends RecyclerView.ViewHolder{
 
     private TextView courseCode, courseName, courseSchool;

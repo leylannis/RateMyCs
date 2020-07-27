@@ -30,9 +30,8 @@ public class LoginActivity extends AppCompatActivity {
 
     Button signupButton, loginButton;
     TextView guestText;
-    EditText emailField, passwordField, userField;
+    EditText emailField, passwordField;
     String email, password;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -40,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // initialize view elements and firebase auth
         mAuth = FirebaseAuth.getInstance();
-
         signupButton = findViewById(R.id.signup_Button);
         guestText = findViewById(R.id.continue_tag);
         emailField = findViewById(R.id.email);
@@ -66,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Login failed! Please try again later", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Login failed! Please try again.", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -92,13 +91,15 @@ public class LoginActivity extends AppCompatActivity {
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference mRef = database.getReference().child("users");
                                         mRef.push().setValue(new User(email));
+                                        // save email locally for later
                                         MainActivity.email = email;
 
+                                        // start MainActivity for main app functionality
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Signup failed! Please try again later", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Signup failed! Please try again.", Toast.LENGTH_LONG).show();
                                     }
                                 }
 
@@ -110,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
         guestText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // continue to main app functionality with restricted access as a guest user
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -119,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean checkFields() {
+        // check if login/signup inputs are valid
         if (email == null){
             Toast.makeText(getApplicationContext(),"Invalid Email or Password", Toast.LENGTH_SHORT).show();
             return false;}

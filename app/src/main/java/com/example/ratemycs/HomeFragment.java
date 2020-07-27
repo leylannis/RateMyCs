@@ -37,7 +37,6 @@ import static android.content.ContentValues.TAG;
 public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
-    View v;
     private CourseAdapter adapter;
     private static ArrayList<Course> courseElems;
     private List<String> mDataKey = new ArrayList<>();
@@ -49,11 +48,8 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
+    public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-
         return fragment;
     }
 
@@ -72,9 +68,10 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.v = view;
         init();
 
+        // implement searching via searchview
+        // incomplete logic, not properly functioning
         searchview = Objects.requireNonNull(getView()).findViewById(R.id.searchView);
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -109,6 +106,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void init() {
+        // set up recyclerview to display all courses
         recyclerView = (RecyclerView) Objects.requireNonNull(getView()).findViewById(R.id.courseListRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         courseElems = new ArrayList<>();
@@ -118,6 +116,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void LoadCourses() {
+        // retrieve courses from database
         DatabaseReference db = FirebaseDatabase.getInstance().getReference().child("courses");
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

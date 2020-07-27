@@ -36,35 +36,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // initialize view elements, firebase auth, and current firebase user
         firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
-
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
         menu = navigationView.getMenu();
 
+        // manage sidebar menu
+        // initialize "default" fragment HomeFragment to explore courses
         setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.bringToFront();
-
         navigationView.setNavigationItemSelectedListener(this);
         loadFragment(new HomeFragment());
 
-        if (currentUser == null){
+        // only show login if not logged in and logout if logged in
+        if (currentUser == null)
             menu.findItem(R.id.nav_logout).setVisible(false);
-        }
-        else{
+        else
             menu.findItem(R.id.nav_login).setVisible(false);
-        }
 
         // since not yet implemented fully hide profile option
         // possible future user feature
         menu.findItem(R.id.nav_profile).setVisible(false);
-
     }
 
     @Override

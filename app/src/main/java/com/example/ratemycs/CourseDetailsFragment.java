@@ -69,21 +69,23 @@ public class CourseDetailsFragment extends Fragment {
     }
 
     private void init() {
+        // initialize view elements
         codeView = Objects.requireNonNull(getView()).findViewById(R.id.code_details);
         nameView = getView().findViewById(R.id.name_details);
         schoolView = getView().findViewById(R.id.school_details);
         avgView = getView().findViewById(R.id.avgRating_details);
-
         reviewButton = getView().findViewById(R.id.reviewButton);
         saveButton = getView().findViewById(R.id.saveButton);
         recyclerView = getView().findViewById(R.id.review_Recycler);
 
+        // add course details to view
         codeView.append(selected.getCode());
         nameView.append(selected.getName());
         schoolView.append(selected.getSchool());
 
         reviewElems = new ArrayList<>();
 
+        // start WriteReviewActivity to write a review on course being viewed
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,10 +93,13 @@ public class CourseDetailsFragment extends Fragment {
                 intent.putExtra("code", selected.getCode());
                 CourseDetailsFragment.super.onPause();
                 startActivity(intent);
+                // to update view with newly added review
                 CourseDetailsFragment.super.onResume();
             }
         });
 
+        // add current course to list of saved elements
+        // can now be seen in "Saved Courses" tab of menu
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,11 +107,11 @@ public class CourseDetailsFragment extends Fragment {
             }
         });
 
+        // setup recyclerview to be updated with relevant reviews
         recyclerView = (RecyclerView) Objects.requireNonNull(getView()).findViewById(R.id.review_Recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         reviewElems = new ArrayList<>();
         LoadReviews();
-
         adapter = new ReviewAdapter(getActivity(), reviewElems);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -119,12 +124,13 @@ public class CourseDetailsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 reviewElems.clear();
                 mDataKey.clear();
+                // add database review items to list
                 for (DataSnapshot single : dataSnapshot.getChildren()) {
                     reviewElems.add(single.getValue(Review.class));
                     mDataKey.add(single.getKey());
                 }
 
-                // filter list to include only selected course reviews
+                // filter list to include only selected course's reviews
                 reviewElems.removeIf(new Predicate<Review>() {
                     @Override
                     public boolean test(Review n) {
@@ -132,7 +138,7 @@ public class CourseDetailsFragment extends Fragment {
                     }
                 });
 
-                // add average rating score
+                // calculate and add average rating score to view
                 if (reviewElems.size() > 0) {
                     int avgSum = 0;
                     int count = 0;

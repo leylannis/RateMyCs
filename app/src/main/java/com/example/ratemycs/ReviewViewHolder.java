@@ -6,8 +6,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+// view holder for reviews, details review data to be displayed
 public class ReviewViewHolder extends RecyclerView.ViewHolder{
-
     TextView descView, profView, scoreView;
     public View itemView;
 

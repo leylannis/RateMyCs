@@ -2,7 +2,11 @@ package com.example.ratemycs;
 
 import java.io.Serializable;
 
+// class to hold Course information
 public class Course implements Serializable {
+    public String code;
+    public String name;
+    public String school;
 
     public Course(String code, String name, String school) {
         this.code = code;
@@ -15,10 +19,6 @@ public class Course implements Serializable {
         this.name = "no name";
         this.school = "no school";
     }
-
-    public String code;
-    public String name;
-    public String school;
 
     public String getCode() {
         return code;

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+// custom adapter to populate a recyclerview with a list of Reviews
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder>  {
     private Context mContext;
     static ArrayList<Review> reviewsArray;
@@ -22,6 +23,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder>  {
     @NonNull
     @Override
     public ReviewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // attach review item specific layout
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_review, parent, false);
         return new ReviewViewHolder(view);
     }

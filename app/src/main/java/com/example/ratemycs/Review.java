@@ -1,7 +1,7 @@
 package com.example.ratemycs;
 
+// class to store Review element data
 public class Review {
-
     String code, description, professor, score;
 
     public Review(String code, String description, String professor, String score) {

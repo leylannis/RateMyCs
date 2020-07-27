@@ -2,6 +2,7 @@ package com.example.ratemycs;
 
 import java.util.ArrayList;
 
+// user class
 public class User {
     private String email;
     private int reviewCount;

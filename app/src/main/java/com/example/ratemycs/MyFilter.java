@@ -19,7 +19,6 @@ public class MyFilter extends Filter {
 
     @Override
     protected FilterResults performFiltering(CharSequence constraint) {
-
         filteredCourseList.clear();
         final FilterResults results = new FilterResults();
 
@@ -28,7 +27,7 @@ public class MyFilter extends Filter {
             results.values = filteredCourseList;
 
         } else {
-            //here you need to add proper items do filteredCourseList
+            // here you need to add proper items to filteredCourseList
             for (final Course item : courseList) {
                 if (item.getName().toLowerCase().trim().contains(constraint.toString().toUpperCase().trim())) {
                     filteredCourseList.add(item);
