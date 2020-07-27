@@ -26,5 +26,11 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="explore_computer_science_courses">Explore Computer Science Courses</string>
-    <string name="sign_in_for_full_experience">Sign In for Full Experience</string>
+    <string name="sign_in_for_full_experience">Sign In or Sign Up for Full Experience</string>
+    <string name="no_courses_saved_yet">No Courses Saved Yet</string>
+    <string name="please_explore_and_save_courses_to_view_here">Please explore and save courses to view here</string>
+    <string name="welcome_to_nrate_my_cs_course">Welcome to\nRate My CS Course</string>
+    <string name="fill_in_fields_to_sign_up">Fill in fields to Sign Up</string>
+    <string name="new_user_sign_up_with_above_info">New User? SIGN UP with above info</string>
+    <string name="continue_as_a_guest">CONTINUE AS A GUEST</string>
 </resources>

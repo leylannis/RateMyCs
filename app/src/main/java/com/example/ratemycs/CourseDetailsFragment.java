@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
+@SuppressWarnings("ALL")
 public class CourseDetailsFragment extends Fragment {
 
     Course selected;
@@ -51,7 +52,7 @@ public class CourseDetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle b = getArguments();
-        selected = (Course) b.getSerializable("course");
+        selected = (Course) Objects.requireNonNull(b).getSerializable("course");
     }
 
     @Override
@@ -68,7 +69,7 @@ public class CourseDetailsFragment extends Fragment {
     }
 
     private void init() {
-        codeView = getView().findViewById(R.id.code_details);
+        codeView = Objects.requireNonNull(getView()).findViewById(R.id.code_details);
         nameView = getView().findViewById(R.id.name_details);
         schoolView = getView().findViewById(R.id.school_details);
         avgView = getView().findViewById(R.id.avgRating_details);
@@ -91,6 +92,13 @@ public class CourseDetailsFragment extends Fragment {
                 CourseDetailsFragment.super.onPause();
                 startActivity(intent);
                 CourseDetailsFragment.super.onResume();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SavedFragment.savedElems.add(selected);
             }
         });
 
