@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.bringToFront();
 
         navigationView.setNavigationItemSelectedListener(this);
-        //loadFragment(new HomeFragment());
+        loadFragment(new HomeFragment());
         //navigationView.setCheckedItem(R.id.nav_home);
 
     }
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 break;
             case R.id.nav_profile:
+                fragment = new ProfileFragment();
+                loadFragment(fragment);
                 break;
             case R.id.nav_rate:
                 break;
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void loadFragment(Fragment fragment) {
+    public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);

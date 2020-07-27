@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homeLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:queryHint="Search for a class..." />
 
-    <LinearLayout
-        android:id="@+id/homeLinearLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/courseListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:clickable="true"
+        android:padding="8dp" />
 
-        <SearchView
-            android:id="@+id/searchView"
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/courseListRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

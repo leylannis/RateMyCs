@@ -2,6 +2,27 @@
     <string name="app_name">RateMyCs</string>
     <string name="navigation_drawer_open">open nav drawer</string>
     <string name="navigation_drawer_close">close nav drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="course_details">Course Details</string>
+    <string name="course_code">Course Code: </string>
+    <string name="full_name">Full Name: </string>
+    <string name="school_name">School Name: </string>
+    <string name="add_to_saved_courses">Add To Saved Courses</string>
+    <string name="add_review">Add Review</string>
+    <string name="_5"> / 5</string>
+    <string name="none">-</string>
+    <string name="average_rating">"Average Rating: "</string>
+    <string name="default_course_label">CXXX XXXX</string>
+    <string name="overall_rating_label">Overall Rating:</string>
+    <string name="score_hint"># / 5</string>
+    <string name="professor_taken_label">Professor Taken:</string>
+    <string name="review_hint">Write Review Here</string>
+    <string name="submit_label">Submit</string>
+    <string name="clear_label">clear</string>
+    <string name="review_description_label">Review Description:</string>
+    <string name="prof_name_hint">Prof. Name</string>
+    <string name="explore_courses">Explore Courses</string>
+    <string name="saved_courses">Saved Courses</string>
+    <string name="profile">Profile</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
 </resources>

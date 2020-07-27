@@ -5,29 +5,29 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/home_icon"
-            android:title="Home" />
+            android:title="@string/explore_courses" />
 
         <item
             android:id="@+id/nav_saved"
             android:icon="@drawable/bookmark_icon"
-            android:title="Saved Courses" />
+            android:title="@string/saved_courses" />
     </group>
 
-    <item android:title="Profile">
+    <item android:title="@string/profile">
         <group android:checkableBehavior="single">
         <menu>
                 <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/profile_icon"
-                    android:title="Profile" />
+                    android:title="@string/profile" />
                 <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/login_icon"
-                    android:title="Login" />
+                    android:title="@string/login" />
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/logout_icon"
-                    android:title="Logout" />
+                    android:title="@string/logout" />
         </menu>
         </group>
     </item>
