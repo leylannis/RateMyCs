@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 import static android.content.ContentValues.TAG;
 
@@ -77,14 +78,30 @@ public class HomeFragment extends Fragment {
         searchview = Objects.requireNonNull(getView()).findViewById(R.id.searchView);
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
+            public boolean onQueryTextSubmit(final String query) {
+                // filter list to include only selected course reviews
+                courseElems.removeIf(new Predicate<Course>() {
+                    @Override
+                    public boolean test(Course n) {
+                        return (!n.getCode().contains(query));
+                    }
+                });
+                LoadCourses();
+                adapter.notifyDataSetChanged();
+                return true;
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.filterList(newText);
-                //LoadCourses();
+            public boolean onQueryTextChange(final String newText) {
+                // filter list to include only selected course reviews
+                courseElems.removeIf(new Predicate<Course>() {
+                    @Override
+                    public boolean test(Course n) {
+                        return (!n.getCode().contains(newText));
+                    }
+                });
+                LoadCourses();
+                adapter.notifyDataSetChanged();
                 return true;
             }
         });

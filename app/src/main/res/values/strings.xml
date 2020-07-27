@@ -20,4 +20,9 @@
     <string name="clear_label">clear</string>
     <string name="review_description_label">Review Description:</string>
     <string name="prof_name_hint">Prof. Name</string>
+    <string name="explore_courses">Explore Courses</string>
+    <string name="saved_courses">Saved Courses</string>
+    <string name="profile">Profile</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
 </resources>
