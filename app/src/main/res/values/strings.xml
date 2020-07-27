@@ -25,4 +25,6 @@
     <string name="profile">Profile</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="explore_computer_science_courses">Explore Computer Science Courses</string>
+    <string name="sign_in_for_full_experience">Sign In for Full Experience</string>
 </resources>

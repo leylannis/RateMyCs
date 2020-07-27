@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Menu menu;
     TextView textView;
     private DatabaseReference mDatabase;
+    FirebaseDatabase db;
+
 
 
     @Override
