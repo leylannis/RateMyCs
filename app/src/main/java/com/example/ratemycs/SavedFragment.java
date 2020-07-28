@@ -46,7 +46,6 @@ public class SavedFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // initialize view element references
         recyclerView = Objects.requireNonNull(getView()).findViewById(R.id.recycler_View);
-        none1 = getView().findViewById(R.id.noneYet_TextView1);
         none2 = getView().findViewById(R.id.noneYet_TextView2);
 
         // hide recyclerview and display error message if there are no saved courses
@@ -58,7 +57,6 @@ public class SavedFragment extends Fragment {
 
     private void init() {
         // hide error messages
-        none1.setVisibility(View.INVISIBLE);
         none2.setVisibility(View.INVISIBLE);
 
         // setup recyclerview to display saves courses

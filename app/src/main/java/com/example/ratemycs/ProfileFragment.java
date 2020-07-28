@@ -76,9 +76,11 @@ public class ProfileFragment extends Fragment {
         recycler = getView().findViewById(R.id.profileReview_Recycler);
         editButton = getView().findViewById(R.id.editSchoolButton);
 
+        // get instance and email of current user
         userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         mRef = FirebaseDatabase.getInstance().getReference().child("users");
 
+        // load fields with user info
         emailView.setText(userEmail);
         schoolView.setText(userSchool);
 

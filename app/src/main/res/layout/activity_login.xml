@@ -55,6 +55,7 @@
                 android:inputType="textPassword" />
 
             <Button
+                android:id="@+id/reset_PasswordButton"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"

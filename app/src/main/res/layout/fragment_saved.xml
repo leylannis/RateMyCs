@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baloo"
-            android:text="@string/no_courses_saved_yet"
+            android:text="Saved Courses"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />
