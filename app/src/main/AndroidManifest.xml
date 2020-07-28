@@ -8,6 +8,7 @@
         android:label="Rate My CS Course"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SignupActivity"></activity>
         <activity android:name=".WriteReviewActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity">

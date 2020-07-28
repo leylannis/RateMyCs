@@ -1,45 +1,65 @@
 package com.example.ratemycs;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 // user class
 public class User {
-    private String email;
-    private int reviewCount;
+    private String email, school;
     private ArrayList<String> savedCourses;
+    FirebaseDatabase db = FirebaseDatabase.getInstance();
+    DatabaseReference mRef = db.getReference().child("users");
 
     public User() {
         this.email = "";
-        this.reviewCount = 0;
         this.savedCourses = new ArrayList<>();
+        this.school = "";
     }
 
-    public User(String email, int reviewCount, ArrayList<String> savedCourses) {
+    public User(String email, ArrayList<String> savedCourses, String school) {
         this.email = email;
-        this.reviewCount = reviewCount;
         this.savedCourses = savedCourses;
+        this.school = school;
     }
 
-    public User(String email) {
+    public User(String email, String school) {
         this.email = email;
-        this.reviewCount = 0;
         this.savedCourses = new ArrayList<>();
+        this.school = school;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public void setEmail(final String newEmail) {
+        this.email = newEmail;
+        mRef = FirebaseDatabase.getInstance().getReference().child("users");
 
-    public int getReviewCount() {
-        return reviewCount;
-    }
+        mRef.orderByChild("email").equalTo(this.email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                        String key=datas.getKey();
+                        mRef.child(key).child("email").setValue(newEmail);
+                    }
+                }
+            }
 
-    public void setReviewCount(int reviewCount) {
-        this.reviewCount = reviewCount;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public ArrayList<String> getSavedCourses() {
@@ -52,6 +72,32 @@ public class User {
 
     public void saveCourse(String newCode){
         this.savedCourses.add(newCode);
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(final String newSchool) {
+        this.school = newSchool;
+        mRef = FirebaseDatabase.getInstance().getReference().child("users");
+
+        mRef.orderByChild("email").equalTo(this.email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot datas : dataSnapshot.getChildren()) {
+                        String key=datas.getKey();
+                        mRef.child(key).child("school").setValue(newSchool);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
 

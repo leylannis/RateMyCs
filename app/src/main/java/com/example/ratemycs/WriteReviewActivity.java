@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +21,7 @@ public class WriteReviewActivity extends AppCompatActivity {
     EditText scoreView, professorView, descriptionView;
     String code, score, professor, description;
     Button submit, clear;
+    String creator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,8 @@ public class WriteReviewActivity extends AppCompatActivity {
         descriptionView = findViewById(R.id.desc_EditText);
         submit = findViewById(R.id.submit_Button);
         clear = findViewById(R.id.clear_Button);
+
+        creator = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
         // retrieve course code sent via intent
         String intentData = getIntent().getStringExtra("code");
@@ -86,9 +91,9 @@ public class WriteReviewActivity extends AppCompatActivity {
         // add review to node of reviews in firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database.getReference().child("reviews");
-        mRef.push().setValue(new Review(code, description, professor, score));
+        mRef.push().setValue(new Review(code, description, professor, score, creator));
         Toast.makeText(getApplicationContext(), "Review Submitted Successfully", Toast.LENGTH_SHORT).show();
-        ReviewAdapter.reviewsArray.add(new Review(code, description, professor, score));
+        ReviewAdapter.reviewsArray.add(new Review(code, description, professor, score, creator));
         finish();
     }
 }

@@ -60,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
             menu.findItem(R.id.nav_login).setVisible(false);
 
-        // since not yet implemented fully hide profile option
-        // possible future user feature
-        menu.findItem(R.id.nav_profile).setVisible(false);
     }
 
     @Override
@@ -95,11 +92,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (currentUser == null){
                     Toast.makeText(getApplicationContext(), "Please login or signup to view.", Toast.LENGTH_SHORT).show();
                 }
-                //else{
-                    // omitted functionality
-                    // fragment = new ProfileFragment();
-                    // loadFragment(fragment);
-                //}
+                else{
+                     fragment = new ProfileFragment();
+                     loadFragment(fragment);
+                }
                 break;
             case R.id.nav_rate:
                 break;

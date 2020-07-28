@@ -76,35 +76,12 @@ public class LoginActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                email = emailField.getText().toString().trim();
-                password = passwordField.getText().toString().trim();
-                if (checkFields()) {
-                    // add to users in firebase authentication
-                    mAuth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), "Signup successful!", Toast.LENGTH_LONG).show();
-
-                                        // add user to users branch in realtime database
-                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
-                                        DatabaseReference mRef = database.getReference().child("users");
-                                        mRef.push().setValue(new User(email));
-                                        // save email locally for later
-                                        MainActivity.email = email;
-
-                                        // start MainActivity for main app functionality
-                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), "Signup failed! Please try again.", Toast.LENGTH_LONG).show();
-                                    }
-                                }
-
-                            });
-                }
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                //LoginActivity.super.onPause();
+                startActivity(intent);
+                finish();
+                // to update view with newly added review
+                //LoginActivity.super.onResume();
             }
         });
 
