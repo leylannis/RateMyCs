@@ -1,7 +1,9 @@
 package com.example.ratemycs;
 
+import java.io.Serializable;
+
 // class to store Review element data
-public class Review {
+public class Review implements Serializable {
     String code, description, professor, score, creator;
 
     public Review(String code, String description, String professor, String score, String creator) {

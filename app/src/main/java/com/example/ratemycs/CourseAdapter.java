@@ -19,6 +19,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>  {
     private Context mContext;
     private ArrayList<Course> coursesArray;
     MyFilter filter;
+    String key;
 
     public CourseAdapter(Context context, ArrayList<Course> coursesArray) {
         this.mContext = context;
@@ -48,6 +49,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseViewHolder>  {
                 Fragment fragment = new CourseDetailsFragment();
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("course", (Serializable) selectedCourse);
+                bundle.putString("key", key);
                 fragment.setArguments(bundle);
                 FragmentTransaction transaction = ((MainActivity)mContext).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_container, fragment);

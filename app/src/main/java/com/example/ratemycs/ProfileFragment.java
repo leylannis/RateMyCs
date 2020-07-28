@@ -112,7 +112,6 @@ public class ProfileFragment extends Fragment {
                         db.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                // add database review items to list
                                 for (DataSnapshot single : dataSnapshot.getChildren()) {
                                     String key = single.getKey();
                                     db.child(key).child("school").setValue(newSchool);

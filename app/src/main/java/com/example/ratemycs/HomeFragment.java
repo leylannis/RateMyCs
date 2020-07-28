@@ -42,6 +42,8 @@ public class HomeFragment extends Fragment {
     private List<String> mDataKey = new ArrayList<>();
     SearchView searchview;
     static Course selectedCourse;
+    static Review selectedReview;
+    static String reviewKey;
 
 
     public HomeFragment() {
