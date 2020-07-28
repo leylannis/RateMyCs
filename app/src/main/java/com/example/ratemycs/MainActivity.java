@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     Menu menu;
     private FirebaseAuth firebaseAuth;
-    FirebaseUser currentUser;
+    static FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

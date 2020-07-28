@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -89,12 +90,16 @@ public class CourseDetailsFragment extends Fragment {
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), WriteReviewActivity.class);
-                intent.putExtra("code", selected.getCode());
-                CourseDetailsFragment.super.onPause();
-                startActivity(intent);
-                // to update view with newly added review
-                CourseDetailsFragment.super.onResume();
+                if (MainActivity.currentUser == null)
+                    Toast.makeText(getContext(), "Sign in to Leave a Review", Toast.LENGTH_SHORT).show();
+                else{
+                    Intent intent = new Intent(getActivity(), WriteReviewActivity.class);
+                    intent.putExtra("code", selected.getCode());
+                    CourseDetailsFragment.super.onPause();
+                    startActivity(intent);
+                    // to update view with newly added review
+                    CourseDetailsFragment.super.onResume();
+                }
             }
         });
 

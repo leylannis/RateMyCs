@@ -67,9 +67,10 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="15dp"
         android:hint="@string/review_hint"
-        android:inputType="textCapSentences"
+        android:inputType="textCapSentences|textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_TextView" />
+        app:layout_constraintTop_toBottomOf="@+id/detail_TextView"
+        android:scrollHorizontally="false"/>
 
     <Button
         android:id="@+id/submit_Button"
