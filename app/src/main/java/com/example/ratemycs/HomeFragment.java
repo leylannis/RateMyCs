@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import android.text.TextWatcher;
 import android.widget.AdapterView;
 import android.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -75,17 +76,19 @@ public class HomeFragment extends Fragment {
         // implement searching via searchview
         // incomplete logic, not properly functioning
         searchview = Objects.requireNonNull(getView()).findViewById(R.id.searchView);
+
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(final String query) {
                 // filter list to include only selected course reviews
+                LoadCourses();
                 courseElems.removeIf(new Predicate<Course>() {
                     @Override
                     public boolean test(Course n) {
                         return (!n.getCode().contains(query));
                     }
                 });
-                LoadCourses();
+                adapter.setList(courseElems);
                 adapter.notifyDataSetChanged();
                 return true;
             }
@@ -93,13 +96,14 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(final String newText) {
                 // filter list to include only selected course reviews
+                LoadCourses();
                 courseElems.removeIf(new Predicate<Course>() {
                     @Override
                     public boolean test(Course n) {
                         return (!n.getCode().contains(newText));
                     }
                 });
-                LoadCourses();
+                adapter.setList(courseElems);
                 adapter.notifyDataSetChanged();
                 return true;
             }
@@ -137,5 +141,20 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    void filter(String text){
+        // alternate filtering on search
+        // not deployed
+        ArrayList<Course> temp = new ArrayList();
+        for( Course d: courseElems){
+            //or use .equal(text) with you want equal match
+            //use .toLowerCase() for better matches
+            if(d.getCode().contains(text)){
+                temp.add(d);
+            }
+        }
+        //update recyclerview
+        adapter.setList(temp);
     }
 }

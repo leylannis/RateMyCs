@@ -77,11 +77,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-                //LoginActivity.super.onPause();
                 startActivity(intent);
                 finish();
-                // to update view with newly added review
-                //LoginActivity.super.onResume();
             }
         });
 

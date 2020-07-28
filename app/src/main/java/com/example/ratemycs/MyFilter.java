@@ -35,6 +35,8 @@ public class MyFilter extends Filter {
             }
             results.values = filteredCourseList;
             results.count = filteredCourseList.size();
+            adapter.setList(filteredCourseList);
+            adapter.notifyDataSetChanged();
         }
         return results;
     }
