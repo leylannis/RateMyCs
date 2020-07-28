@@ -92,7 +92,7 @@ public class CourseDetailsFragment extends Fragment {
             public void onClick(View v) {
                 if (MainActivity.currentUser == null)
                     Toast.makeText(getContext(), "Sign in to Leave a Review", Toast.LENGTH_SHORT).show();
-                else{
+                else {
                     Intent intent = new Intent(getActivity(), WriteReviewActivity.class);
                     intent.putExtra("code", selected.getCode());
                     CourseDetailsFragment.super.onPause();
@@ -108,7 +108,10 @@ public class CourseDetailsFragment extends Fragment {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SavedFragment.savedElems.add(selected);
+                if (MainActivity.currentUser == null)
+                    Toast.makeText(getContext(), "Sign in to Save a Course", Toast.LENGTH_SHORT).show();
+                else
+                    SavedFragment.savedElems.add(selected);
             }
         });
 
