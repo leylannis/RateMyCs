@@ -110,8 +110,12 @@ public class CourseDetailsFragment extends Fragment {
             public void onClick(View v) {
                 if (MainActivity.currentUser == null)
                     Toast.makeText(getContext(), "Sign in to Save a Course", Toast.LENGTH_SHORT).show();
-                else
-                    SavedFragment.savedElems.add(selected);
+                else{
+                    if(!SavedFragment.savedElems.contains(selected))
+                        SavedFragment.savedElems.add(selected);
+                    else
+                        Toast.makeText(getContext(),"Course is already saved", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
